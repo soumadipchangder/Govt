@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Distribution Entry</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h2>Government Food Distribution</h2>
+        <a href="{{ url_for('admin') }}" class="admin-btn">Admin Access</a>
+    </header>
+
+    <form method="POST">
+        <table>
+            <tr>
+                <th>Food Items</th>
+                <th>Opening Stock</th>
+            </tr>
+            <tr>
+                <td>Rice</td>
+                <td><input type="number" name="rice" required></td>
+            </tr>
+            <tr>
+                <td>Musur Dal</td>
+                <td><input type="number" name="musur_dal" required></td>
+            </tr>
+            <tr>
+                <td>Mustard Oil</td>
+                <td><input type="number" name="mustard_oil" required></td>
+            </tr>
+            <tr>
+                <td>Iodised Salt</td>
+                <td><input type="number" name="iodised_salt" required></td>
+            </tr>
+            <tr>
+                <td>RTE Packet</td>
+                <td><input type="number" name="rte_packet" required></td>
+            </tr>
+        </table>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

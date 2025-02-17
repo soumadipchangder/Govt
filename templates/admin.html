@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h2>Admin Panel - Food Stock</h2>
+        <a href="{{ url_for('index') }}" class="admin-btn">Back</a>
+    </header>
+
+    <table>
+        <tr>
+            <th>Entry ID</th>
+            <th>Rice</th>
+            <th>Musur Dal</th>
+            <th>Mustard Oil</th>
+            <th>Iodised Salt</th>
+            <th>RTE Packet</th>
+            <th>Date</th>
+        </tr>
+        {% for entry in food_data %}
+        <tr>
+            <td>{{ entry.id }}</td>
+            <td>{{ entry.Rice }}</td>
+            <td>{{ entry['Musur Dal'] }}</td>
+            <td>{{ entry['Mustard Oil'] }}</td>
+            <td>{{ entry['Iodised Salt'] }}</td>
+            <td>{{ entry['RTE Packet'] }}</td>
+            <td>{{ entry.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

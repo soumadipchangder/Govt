@@ -1,0 +1,9 @@
+/food-distribution-app
+│-- /templates
+│   │-- index.html  (Frontend for data entry)
+│   │-- admin.html  (Admin panel to view stored data)
+│-- /static
+│   │-- styles.css  (CSS for frontend styling)
+│-- app.py  (Flask backend)
+│-- serviceAccountKey.json  (Firebase credentials)
+│-- requirements.txt
