@@ -2,13 +2,23 @@ from flask import Flask, render_template, request, redirect, url_for
 import firebase_admin
 from firebase_admin import credentials, firestore
 from datetime import datetime
+import os
+import json
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 
-# Initialize Firebase
-cred = credentials.Certificate("serviceAccountKey.json")  # Path to JSON key
-firebase_admin.initialize_app(cred)
-db = firestore.client()
+# Load Firebase credentials from environment variable
+firebase_credentials = os.environ.get("FIREBASE_CREDENTIALS")
+os.environ['FIREBASE_CREDENTIALS'] = firebase_credentials
+if firebase_credentials:
+    cred_dict = json.loads(firebase_credentials)
+    cred = credentials.Certificate(cred_dict)
+    firebase_admin.initialize_app(cred)
+    db = firestore.client()
+else:
+    raise ValueError("FIREBASE_CREDENTIALS environment variable is not set.")
 
 # Route for data entry page
 @app.route("/", methods=["GET", "POST"])
@@ -38,6 +48,3 @@ def admin():
     food_data = [{**doc.to_dict(), "id": doc.id} for doc in docs]  # Store document ID
 
     return render_template("admin.html", food_data=food_data)
-
-if __name__ == "__main__":
-    app.run(debug=True)
